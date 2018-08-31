@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PersonProcessor.Dal\PersonProcessor.Dal.csproj" />
+    <ProjectReference Include="..\PersonProcessor.Logic\PersonProcessor.Logic.csproj" />
+  </ItemGroup>
+
 </Project>
