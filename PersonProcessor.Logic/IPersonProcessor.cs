@@ -6,9 +6,9 @@ namespace PersonProcessor.Logic
 {
     public interface IPersonProcessor
     {
-        void Process(Person people);
+        void Process(Person person);
 
-        string ResultsToString();
+        IFormattedResult GetResults();
 
     }
 }

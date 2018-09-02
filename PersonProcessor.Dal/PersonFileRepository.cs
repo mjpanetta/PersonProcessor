@@ -16,16 +16,13 @@ namespace PersonProcessor.Dal
         public IEnumerable<Person> GetAll()
         {
             var peopleAsStrings = System.IO.File.ReadLines(_inputFilePath);
-            var results = new List<Person>();
 
             foreach (var personAsString in peopleAsStrings)
             {
                 yield return JsonConvert.DeserializeObject<Person>(personAsString);
-                //results.Add(JsonConvert.DeserializeObject<Person>(personAsString));
 
             }
-
-            //return results;
+            
         }
     }
 }
