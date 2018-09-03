@@ -4,12 +4,12 @@ using Xunit;
 
 namespace PersonProcessor.Tests
 {
-    public class AgeSelecterTests : PeopleTestsBaseClass
+    public class AgeSelectorTests : PeopleTestsBaseClass
     {
         [Fact]
-        public void AgeSelecterReturnsCorrectly()
+        public void AgeSelectorReturnsCorrectly()
         {
-            var processor = new AgeSelecter(25);
+            var processor = new AgeSelector(25);
             var mark = GeneratePerson(1, "Mark", null, null, 25);
             var steve = GeneratePerson(2, "Steve", null, null, 23);
             var bill = GeneratePerson(3, "Bill", null, null, 25);
@@ -21,7 +21,7 @@ namespace PersonProcessor.Tests
             processor.Process(bill);
             processor.Process(dave);
             processor.Process(tim);
-            var result = (AgeSelecterResult)processor.GetResults();
+            var result = (AgeSelectorResult)processor.GetResults();
 
             Assert.True(result.People.TrueForAll(r => r.Age == 25));
             Assert.True(result.People.Count == 2);
@@ -29,18 +29,18 @@ namespace PersonProcessor.Tests
         }
 
         [Fact]
-        public void AgeSelecterReturnsEmptyWhenNoPeopleProvided()
+        public void AgeSelectorReturnsEmptyWhenNoPeopleProvided()
         {
-            var processor = new AgeSelecter(25);
+            var processor = new AgeSelector(25);
 
-            var result = (AgeSelecterResult)processor.GetResults();
+            var result = (AgeSelectorResult)processor.GetResults();
 
             Assert.True(!result.People.Any());
         }
         [Fact]
-        public void AgeSelecterReturnsEmptyListWhenAgeIsntPresent()
+        public void AgeSelectorReturnsEmptyListWhenAgeIsntPresent()
         {
-            var processor = new AgeSelecter(0);
+            var processor = new AgeSelector(0);
             var mark = GeneratePerson(1, "Mark", null, null, 25);
             var steve = GeneratePerson(2, "Steve", null, null, 23);
             var bill = GeneratePerson(3, "Bill", null, null, 25);
@@ -52,7 +52,7 @@ namespace PersonProcessor.Tests
             processor.Process(bill);
             processor.Process(dave);
             processor.Process(tim);
-            var result = (AgeSelecterResult)processor.GetResults();
+            var result = (AgeSelectorResult)processor.GetResults();
 
             Assert.True(!result.People.Any());
         }

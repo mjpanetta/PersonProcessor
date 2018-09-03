@@ -2,14 +2,13 @@
 
 namespace PersonProcessor.Logic
 {
-    public class IdSelecter : IPersonProcessor
+    public class IdSelector : IPersonProcessor
     {
-        private readonly int _idToSearch;
-        private PersonIdResult _result;
+        private readonly PersonIdResult _result;
 
-        public IdSelecter(int idToSearch)
+        public IdSelector(int idToSearch)
         {
-            _idToSearch = idToSearch;
+            _result = new PersonIdResult() {Id = idToSearch};
         }
 
         public IFormattedResult GetResults()
@@ -21,11 +20,11 @@ namespace PersonProcessor.Logic
         {
             //person already found, no need to continue search
             //may want to throw an exception here depending on how we want to handle this
-            if (_result != null)
+            if (_result.Person != null)
                 return;
 
-            if (person.Id == _idToSearch)
-                _result = new PersonIdResult() { Person = person };
+            if (person.Id == _result.Id)
+                _result.Person = person ;
         }
     }
 }

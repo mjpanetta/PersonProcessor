@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PersonProcessor": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\example_data.json"
+    }
+  }
+}

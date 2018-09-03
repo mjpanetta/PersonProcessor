@@ -4,40 +4,50 @@ using PersonProcessor.Dal;
 using PersonProcessor.Logic;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
 
 namespace PersonProcessor
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            var watch = Stopwatch.StartNew();
+            if (!args.Any())
+            {
+                Console.WriteLine("Please enter the folder path to the data file");
+                return 1;
+            }
 
-            IPersonRepository repo = new PersonFileRepository("../../../../test_data.json");
-            List<IPersonProcessor> processors =
+            var filePath = args[0];
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine($"Can not find file at path {filePath}");
+                return 1;
+            }
+            
+            IPersonRepository repo = new PersonFileRepository(filePath);
+            var processors =
                 new List<IPersonProcessor>
                 {
-                    new IdSelecter(42),
-                    new AgeSelecter(11),
+                    new IdSelector(42),
+                    new AgeSelector(99),
                     new CountPerAgeProcessor()
                 };
 
             var feeder = new PersonFeeder(processors);
-
             var people = repo.GetAll();
             
             feeder.FeedToProcessors(people);
 
             var results = feeder.GetResults().ToList();
 
-            results.ForEach(r => Console.WriteLine(r.GetResultAsString() + "\n"));
+            results.ForEach(r => Console.Write(r.GetResultAsString() + "\n\n"));
 
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            Console.WriteLine($"time:{elapsedMs}");
-
+#if DEBUG
             Console.ReadKey();
-
+#endif
+            return 0;
         }
 
 

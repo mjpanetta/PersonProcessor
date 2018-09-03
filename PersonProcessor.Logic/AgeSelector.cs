@@ -4,15 +4,15 @@ using PersonProcessor.Dal;
 
 namespace PersonProcessor.Logic
 {
-    public class AgeSelecter : IPersonProcessor
+    public class AgeSelector : IPersonProcessor
     {
         private readonly int _ageToSearch;
-        private readonly AgeSelecterResult _results;
+        private readonly AgeSelectorResult _results;
 
-        public AgeSelecter(int ageToSearch)
+        public AgeSelector(int ageToSearch)
         {
             _ageToSearch = ageToSearch;
-            _results = new AgeSelecterResult();
+            _results = new AgeSelectorResult();
         }
 
         public IFormattedResult GetResults()

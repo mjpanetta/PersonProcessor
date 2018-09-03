@@ -4,9 +4,9 @@ using PersonProcessor.Dal;
 
 namespace PersonProcessor.Logic
 {
-    public class AgeSelecterResult : IFormattedResult
+    public class AgeSelectorResult : IFormattedResult
     {
-        public AgeSelecterResult()
+        public AgeSelectorResult()
         {
             People = new List<Person>();
         }

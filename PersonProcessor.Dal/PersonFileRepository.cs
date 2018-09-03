@@ -20,9 +20,7 @@ namespace PersonProcessor.Dal
             foreach (var personAsString in peopleAsStrings)
             {
                 yield return JsonConvert.DeserializeObject<Person>(personAsString);
-
             }
-            
         }
     }
 }
